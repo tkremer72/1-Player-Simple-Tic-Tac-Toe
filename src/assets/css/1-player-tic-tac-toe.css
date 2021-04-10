@@ -1,0 +1,390 @@
+/* Resetting the page css properties */
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+     font-family: Poppins;
+}
+body {
+  text-align: center;
+  font-family: Poppins;
+  font-size: 28px;
+  font-weight: 200;
+  line-height: 32px;
+  letter-spacing: 0.03em;
+}
+.main-content {
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background-color: #FFFFFF;
+}
+.block {
+     display: flex;
+     width: 100px;
+     height: 100px;
+     align-items: center;
+     justify-content: center;
+     font-size: 3rem;
+     font-weight: bold;
+     margin: 0 2px 2px 0;
+     border: 3px solid black;
+     border-radius: 9px;
+     transition: background 0.2s ease-in-out;
+}
+.block:hover {
+     cursor: pointer;
+     background: #94A2FB;
+}
+.occupied:hover {
+     background: #FF3A3A;
+}
+#block_0,
+#block_1,
+#block_2 {
+  border-top: none;
+}
+
+#block_0,
+#block_3,
+#block_6 {
+  border-left: none;
+}
+
+#block_6,
+#block_7,
+#block_8 {
+  border-bottom: none;
+}
+
+#block_2,
+#block_5,
+#block_8 {
+  border-right: none;
+}
+
+.playerWin {
+     color: green;
+   }
+   
+   .computerWin {
+     color: red;
+   }
+   
+   .draw {
+     color: orangered;
+   }
+button {
+     outline: none;
+     border: 4px solid darkslateblue;
+     border-radius: 12px;
+     padding: 5px 10px;
+     font-size: 1.5rem;
+     font-weight: bold;
+     background: none;
+     margin-top: 20px;
+     transition: all 0.2s ease-in-out;
+}
+button:hover {
+     cursor: pointer;
+     background: #94A2FB;
+     color: white;
+}
+.game-title {
+  margin: 20px 0 10px 0;
+  font-family: Poppins;
+  color: rgba(0, 0, 0, 1);
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  font-style: normal;
+}
+.game-area {
+     display: grid;
+     width: 300px;
+     height: 300px;
+     grid-template-columns: auto auto auto;
+}
+
+h2 {
+  font-family: Poppins;
+  font-weight: 200;
+  font-style: normal;
+  margin: 0 auto;
+  font-size: 35px;
+  margin: 10px 0 20px 0;
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column {
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+  height: 432px;
+  width: 432px;
+}
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  font-family: Montserrat Alternates;
+  font-weight: 600;
+  color: #94A2FB;
+  border: 3px outset rgba(0, 0, 0, 0.75);
+  border-radius: 15px;
+  height: 140px;
+  width: 140px;
+  margin: 0 1px 0 1px;
+}
+#reset-button {
+  background-color: #94A2FB;
+  border-radius: 19px;
+  text-align: center;
+  font-size: 28px;
+  border: 3px outset darkslateblue;
+  margin: 25px 0 0 0;
+  padding: 10px 20px;
+}
+/* Set the header logo image and text */
+.logo-image {
+  width: 55px;
+  height: auto;
+}
+.logo-text {
+  font-family: Montserrat Alternates;
+  font-weight: 600;
+  font-style: none;
+  font-size: 36px;
+  line-height: 32px;
+  letter-spacing: 0.03em;
+}
+.navbar a{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+.navbar a:hover {
+  color: #94A2FB;
+}
+.navbar {
+  align-items: center;
+  background-color: #FFFFFF;
+  color: rgba(0, 0, 0, 1);
+  display: flex;
+  font-family: Poppins;
+  font-size: 25px;
+  justify-content: space-around;
+}
+
+.nav-list {
+  list-style-type: none;
+}
+
+.nav-list .list-item {
+  display: inline-block;
+  padding: 20px 10px;
+}
+/* Hide menu on larger screens */
+.menu {
+  display: none;
+}
+.menu-line {
+  background-color: #94A2FB;
+  width: 25px;
+  height: 3px;
+  margin-bottom: 4px;
+}
+
+/* Style the footer and footer elements */
+   .footer-logo {
+     margin-top: 0px;
+     margin-bottom: 10px;
+     width: 55px;
+     height: 55px;
+}
+.footer-text {
+  margin-top: 25px;
+  font-family: Montserrat Alternates;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+}
+.webmaster {
+  text-decoration: none;
+  font-size: 19px;
+}
+.footer-info {
+  width: 100%;
+  font-family: Poppins;
+  font-weight: 200;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 32px;
+  letter-spacing: 0.03em;
+}
+.webmaster-contact {
+  margin-top: 13px;
+}
+.footer-container-fluid {
+     display: flex;
+     justify-content: space-evenly;
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: #FFFFFF;
+     text-align: center;
+}
+
+
+
+/* Media query for smaller devices, hamburger menu */
+@media all and (max-width: 480px) {
+  /* Center the main content, justify the text on small screens */
+  .main-content {
+    display: block;
+     width: 100%;
+     height: auto;
+     background-color: #FFFFFF;
+  }
+  .game-title {
+    margin-top: 10px;
+    margin-left: 40px;
+    font-size: 25px;
+    font-family: Poppins;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  h2 {
+    font-family: Poppins;
+    font-weight: 200;
+    font-style: normal;
+/*     margin: 0 auto;
+ */    
+    font-size: 21px;
+    margin-left: 55px;
+  }
+  .flex-container {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .flex-column {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+    height: 432px;
+    width: 432px;
+  }
+  .square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-family: Montserrat Alternates;
+    font-weight: 600;
+    color: #94A2FB;
+    border: 3px inset rgba(0, 0, 0, 0.75);
+    height: 120px;
+    width: 120px;
+    margin: 0 1px 0 1px;
+  }
+  #reset-button {
+    background-color: #94A2FB;
+    border-radius: 19px;
+    text-align: center;
+    font-size: 28px;
+    border: 3px outset darkslateblue;
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 10px 20px;
+  }
+/* Style the navigation and the header */
+  .navbar {
+    flex-direction: column;
+    position: relative;
+  }
+  .logo-container {
+    width: 100%;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+/* Show menu */
+.menu {
+  display: none;
+  position: absolute;
+  right: 25px;
+  top: 30px;
+}
+.nav-list {
+  list-style-type: none;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  display: none;
+}
+.nav-list .list-item {
+  display: block;
+  border-top: 1px solid black;
+  padding: 10px;
+}
+/* Style the footer container and information */
+.footer-container-fluid {
+  padding: 10px;
+  flex-direction: column;
+  width: 100%;
+  height: 125px;
+}
+/* Style the logo and logo text */
+.footer-logo {
+  margin-top: 5px;
+  width: 45px;
+  height: auto;
+}
+.footer-text {
+  font-family: Montserrat Alternates;
+  font-weight: 600;
+  font-style: none;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0.03em;
+}
+.webmaster-contact {
+  padding: 0;
+  margin: 0;
+}
+.footer-info {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+  font-weight: 200;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0.03em;
+}
+.webmaster {
+  font-family: Poppins;
+  font-weight: 200;
+  font-size: 16px;
+  color: #94A2FB;
+}
+/* Show the hamburger menu  */
+.active {
+  display: block;
+}
+}
