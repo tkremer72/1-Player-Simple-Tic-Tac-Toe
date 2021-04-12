@@ -60,8 +60,8 @@ var game = {
     // @TODO - Change to use not bad AI if you want
 
     else {
-      move = game.dumbAI();
-      //move = game.notBadAI(); 
+      // move = game.dumbAI();
+      move = game.notBadAI(); 
       game.board[move] = 1;
       var square = document.getElementById("tic_tac_toe_" + move);
       square.innerHTML = "X"

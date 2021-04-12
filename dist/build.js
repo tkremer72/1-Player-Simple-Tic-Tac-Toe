@@ -57,8 +57,8 @@ var game = {
     } // (3c) Computers' move - Mark square with an 'X'
     // @TODO - Change to use not bad AI if you want
     else {
-        move = game.dumbAI(); //move = game.notBadAI(); 
-
+        // move = game.dumbAI();
+        move = game.notBadAI();
         game.board[move] = 1;
         var square = document.getElementById("tic_tac_toe_" + move);
         square.innerHTML = "X";
@@ -117,7 +117,7 @@ var game = {
     if (win !== null) {
       display = document.getElementById('results');
       display.textContent = "Winner - " + (win == 0 ? "Player" : "Computer");
-      /*       alert("Winner - " + (win==0 ? "Player" : "Computer"));*/
+      /* alert("Winner - " + (win==0 ? "Player" : "Computer"));*/
 
       game.reset();
     }
