@@ -14,74 +14,79 @@ toggleButton.addEventListener('click', () => {
      naviList.classList.toggle('active');
 } */
 
+/* TIC TAC TOE GAME BELOW *
+
 /* Create an object to hold the game */
 
-var ticTacToe = {
-  // (A) PROPERTIES
+var game = {
+  //(1)Properties
   board: [],
   // array to hold the current game
-  // (B) RESET THE GAME
+  // (2) Reset the game
   reset: function () {
-    // (B1) RESET BOARD ARRAY & GET HTML CONTAINER
-    ticTacToe.board = [];
-    var container = document.getElementById("ticTacToe-game");
-    container.innerHTML = ""; // (B2) REDRAW SQUARES
+    // (2a) Reset the board array and get HTML container
+    game.board = [];
+    var container = document.getElementById("tic_tac_toe_game");
+    container.innerHTML = ""; // (2b) Redraw the board squares
 
     for (let i = 0; i < 9; i++) {
-      ticTacToe.board.push(null);
+      game.board.push(null);
       var square = document.createElement("div");
       square.innerHTML = "&nbsp;";
       square.dataset.idx = i;
-      square.id = "ticTacToe-" + i;
-      square.addEventListener("click", ticTacToe.play);
+      square.id = "tic_tac_toe_" + i;
+      square.addEventListener("click", game.play);
       container.appendChild(square);
     }
   },
-  // (C) PLAY - WHEN THE PLAYER SELECTS A SQUARE
+  // (3) Play - When the player selects a square
   play: function () {
-    // (C1) PLAYER'S MOVE - MARK WITH "O"
+    // (3a) Players move - mark square with an 'O'
     var move = this.dataset.idx;
-    ticTacToe.board[move] = 0;
+    game.board[move] = 0;
     this.innerHTML = "O";
     this.classList.add("player");
-    this.removeEventListener("click", ticTacToe.play); // (C2) NO MORE MOVES AVAILABLE - NO WINNER
+    this.removeEventListener("click", game.play); // (3b) No available moves - No winner
 
-    if (ticTacToe.board.indexOf(null) == -1) {
-      alert("No winner");
-      ticTacToe.reset();
-    } // (C3) COMPUTER'S MOVE - MARK WITH "X"
+    if (game.board.indexOf(null) == -1) {
+      display = document.getElementById('results');
+      display.textContent = "No Winner!";
+      /* alert("No winner"); */
+
+      game.reset();
+    } // (3c) Computers' move - Mark square with an 'X'
     // @TODO - Change to use not bad AI if you want
     else {
-        move = ticTacToe.dumbAI(); //move = ticTacToe.notBadAI(); 
+        move = game.dumbAI(); //move = game.notBadAI(); 
 
-        ticTacToe.board[move] = 1;
-        var square = document.getElementById("ticTacToe-" + move);
+        game.board[move] = 1;
+        var square = document.getElementById("tic_tac_toe_" + move);
         square.innerHTML = "X";
         square.classList.add("computer");
-        square.removeEventListener("click", ticTacToe.play);
-      } // (C4) WHO WON?
+        square.removeEventListener("click", game.play);
+      } // (3d) Who wins?
 
 
-    win = null; // HORIZONTAL ROW CHECKS
+    win = null; // Horizontal row checks
 
     for (let i = 0; i < 9; i += 3) {
-      if (ticTacToe.board[i] != null && ticTacToe.board[i + 1] != null && ticTacToe.board[i + 2] != null) {
-        if (ticTacToe.board[i] == ticTacToe.board[i + 1] && ticTacToe.board[i + 1] == ticTacToe.board[i + 2]) {
-          win = ticTacToe.board[i];
+      if (game.board[i] != null && game.board[i + 1] != null && game.board[i + 2] != null) {
+        if (game.board[i] == game.board[i + 1] && game.board[i + 1] == game.board[i + 2]) {
+          win = game.board[i];
         }
       }
 
       if (win !== null) {
         break;
       }
-    } // VERTICAL ROW CHECKS
+    } // Vertical row checks
 
 
     if (win === null) {
       for (let i = 0; i < 3; i++) {
-        if (ticTacToe.board[i] != null && ticTacToe.board[i + 3] != null && ticTacToe.board[i + 6] != null) {
-          if (ticTacToe.board[i] == ticTacToe.board[i + 3] && ticTacToe.board[i + 3] == ticTacToe.board[i + 6]) {
-            win = ticTacToe.board[i];
+        if (game.board[i] != null && game.board[i + 3] != null && game.board[i + 6] != null) {
+          if (game.board[i] == game.board[i + 3] && game.board[i + 3] == game.board[i + 6]) {
+            win = game.board[i];
           }
 
           if (win !== null) {
@@ -89,53 +94,56 @@ var ticTacToe = {
           }
         }
       }
-    } // DIAGONAL ROW CHECKS
+    } // Diagonal row checks
 
 
     if (win === null) {
-      if (ticTacToe.board[0] != null && ticTacToe.board[4] != null && ticTacToe.board[8] != null) {
-        if (ticTacToe.board[0] == ticTacToe.board[4] && ticTacToe.board[4] == ticTacToe.board[8]) {
-          win = ticTacToe.board[4];
+      if (game.board[0] != null && game.board[4] != null && game.board[8] != null) {
+        if (game.board[0] == game.board[4] && game.board[4] == game.board[8]) {
+          win = game.board[4];
         }
       }
     }
 
     if (win === null) {
-      if (ticTacToe.board[2] != null && ticTacToe.board[4] != null && ticTacToe.board[6] != null) {
-        if (ticTacToe.board[2] == ticTacToe.board[4] && ticTacToe.board[4] == ticTacToe.board[6]) {
-          win = ticTacToe.board[4];
+      if (game.board[2] != null && game.board[4] != null && game.board[6] != null) {
+        if (game.board[2] == game.board[4] && game.board[4] == game.board[6]) {
+          win = game.board[4];
         }
       }
-    } // WE HAVE A WINNER
+    } // There is a winner
 
 
     if (win !== null) {
-      alert("WINNER - " + (win == 0 ? "Player" : "Computer"));
-      ticTacToe.reset();
+      display = document.getElementById('results');
+      display.textContent = "Winner - " + (win == 0 ? "Player" : "Computer");
+      /*       alert("Winner - " + (win==0 ? "Player" : "Computer"));*/
+
+      game.reset();
     }
   },
-  // (D) DUMB COMPUTER AI, RANDOMLY CHOOSES AN EMPTY SLOT
+  // (4) Dumb computer AI - Randomly choose an empty space
   dumbAI: function () {
-    // (D1) EXTRACT OUT ALL OPEN SLOTS
+    // (4a) Extract all open spaces
     var open = [];
 
     for (let i = 0; i < 9; i++) {
-      if (ticTacToe.board[i] === null) {
+      if (game.board[i] === null) {
         open.push(i);
       }
-    } // (D2) RANDOMLY CHOOSE OPEN SLOT
+    } // (4b) Rondomly choose an open space
 
 
     var random = Math.floor(Math.random() * (open.length - 1));
     return open[random];
   },
-  // (E) AI WITH A LITTLE MORE INTELLIGENCE
+  // (5) AI with a little more intelligence
   notBadAI: function () {
-    // (E1) INIT
+    // (5a) Init
     var move = null;
 
     var check = function (first, direction, pc) {
-      // CHECK() : HELPER FUNCTION, CHECK POSSIBLE WINNING ROW
+      //Check(): Helper Function, check possible winning row
       //  first : first square number
       //  direction : "R"ow, "C"ol, "D"iagonal
       //  pc : 0 for player, 1 for computer
@@ -153,17 +161,17 @@ var ticTacToe = {
         third = first == 0 ? 8 : 6;
       }
 
-      if (ticTacToe.board[first] == null && ticTacToe.board[second] == pc && ticTacToe.board[third] == pc) {
+      if (game.board[first] == null && game.board[second] == pc && game.board[third] == pc) {
         return first;
-      } else if (ticTacToe.board[first] == pc && ticTacToe.board[second] == null && ticTacToe.board[third] == pc) {
+      } else if (game.board[first] == pc && game.board[second] == null && game.board[third] == pc) {
         return second;
-      } else if (ticTacToe.board[first] == pc && ticTacToe.board[second] == pc && ticTacToe.board[third] == null) {
+      } else if (game.board[first] == pc && game.board[second] == pc && game.board[third] == null) {
         return third;
       }
 
       return null;
-    }; // (E2) PRIORITY #1 - GO FOR THE WIN
-    // CHECK HORIZONTAL ROWS
+    }; // (5b) Priority #1 - Go for the win
+    // Check horizontal rows
 
 
     for (let i = 0; i < 9; i += 3) {
@@ -172,7 +180,7 @@ var ticTacToe = {
       if (move !== null) {
         break;
       }
-    } // CHECK VERTICAL COLUMNS
+    } // Check vertical columns
 
 
     if (move === null) {
@@ -183,7 +191,7 @@ var ticTacToe = {
           break;
         }
       }
-    } // CHECK DIAGONAL
+    } // Check diagonal
 
 
     if (move === null) {
@@ -192,8 +200,8 @@ var ticTacToe = {
 
     if (move === null) {
       move = check(2, "D", 1);
-    } // (E3) PRIORITY #2 - BLOCK PLAYER FROM WINNING
-    // CHECK HORIZONTAL ROWS
+    } // (5c) Priority #2 - Block human from winning
+    // Check horizontal rows
 
 
     for (let i = 0; i < 9; i += 3) {
@@ -202,7 +210,7 @@ var ticTacToe = {
       if (move !== null) {
         break;
       }
-    } // CHECK VERTICAL COLUMNS
+    } // Check vertical columns
 
 
     if (move === null) {
@@ -213,7 +221,7 @@ var ticTacToe = {
           break;
         }
       }
-    } // CHECK DIAGONAL
+    } // Check diagonal
 
 
     if (move === null) {
@@ -222,16 +230,16 @@ var ticTacToe = {
 
     if (move === null) {
       move = check(2, "D", 0);
-    } // (E4) RANDOM MOVE IF NOTHING
+    } // (5d) Random move if nothing
 
 
     if (move === null) {
-      move = ticTacToe.dumbAI();
+      move = game.dumbAI();
     }
 
     return move;
   }
 };
-window.addEventListener("load", ticTacToe.reset);
+window.addEventListener("load", game.reset);
 
 },{}]},{},[1]);

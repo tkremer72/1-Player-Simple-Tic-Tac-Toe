@@ -23,14 +23,14 @@ body {
 h1 {
   margin: 20px 0 20px 0;
 }
-#ttt-game {
+#tic_tac_toe_game {
   display: grid;
   max-width: 600px;
   margin: 0 auto;
   grid-template-columns: 33% 33% 33%;
   grid-gap: 5px;
 }
-#ttt-game div {
+#tic_tac_toe_game div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,14 +41,14 @@ h1 {
   background-color: gainsboro;
   padding: 50px;
 }
-#ttt-game div:hover {
+#tic_tac_toe_game div:hover {
   background-color: lightblue;
 }
-#ttt-game div.player {
+#tic_tac_toe_game div.player {
   background-color: lightgreen;
   color: white;
 }
-#ttt-game div.computer {
+#tic_tac_toe_game div.computer {
   background-color: lightcoral;
   color: white;
 }

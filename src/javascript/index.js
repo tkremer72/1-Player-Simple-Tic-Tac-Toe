@@ -12,62 +12,67 @@ toggleButton.addEventListener('click', () => {
      naviList.classList.toggle('active');
 } */
 
-/* Create an object to hold the game */
+/* TIC TAC TOE GAME BELOW *
 
+/* Create an object to hold the game */
 var game = {
-  // (A) PROPERTIES
+  //(1)Properties
   board : [], // array to hold the current game
 
-  // (B) RESET THE GAME
+  // (2) Reset the game
   reset : function () {
-    // (B1) RESET BOARD ARRAY & GET HTML CONTAINER
+    // (2a) Reset the board array and get HTML container
     game.board = [];
-    var container = document.getElementById("ttt-game");
+    var container = document.getElementById("tic_tac_toe_game");
     container.innerHTML = "";
 
-    // (B2) REDRAW SQUARES
+    // (2b) Redraw the board squares
     for (let i=0; i<9; i++) {
       game.board.push(null);
       var square = document.createElement("div");
       square.innerHTML = "&nbsp;";
       square.dataset.idx = i;
-      square.id = "ttt-" + i;
+      square.id = "tic_tac_toe_" + i;
       square.addEventListener("click", game.play);
       container.appendChild(square);
     }
   },
 
-  // (C) PLAY - WHEN THE PLAYER SELECTS A SQUARE
+  // (3) Play - When the player selects a square
   play : function () {
-    // (C1) PLAYER'S MOVE - MARK WITH "O"
+    // (3a) Players move - mark square with an 'O'
     var move = this.dataset.idx;
     game.board[move] = 0;
     this.innerHTML = "O"
     this.classList.add("player");
     this.removeEventListener("click", game.play);
 
-    // (C2) NO MORE MOVES AVAILABLE - NO WINNER
+    // (3b) No available moves - No winner
     if (game.board.indexOf(null) == -1) {
-      alert("No winner");
+      display = document.getElementById('results');
+      display.textContent = "No Winner!";
+      /* alert("No winner"); */
       game.reset();
     }
 
-    // (C3) COMPUTER'S MOVE - MARK WITH "X"
+    // (3c) Computers' move - Mark square with an 'X'
+
     // @TODO - Change to use not bad AI if you want
+
     else {
       move = game.dumbAI();
       //move = game.notBadAI(); 
       game.board[move] = 1;
-      var square = document.getElementById("ttt-" + move);
+      var square = document.getElementById("tic_tac_toe_" + move);
       square.innerHTML = "X"
       square.classList.add("computer");
       square.removeEventListener("click", game.play);
     }
 
-    // (C4) WHO WON?
+    // (3d) Who wins?
     win = null;
     
-    // HORIZONTAL ROW CHECKS
+    // Horizontal row checks
     for (let i=0; i<9; i+=3) {
       if (game.board[i]!=null && game.board[i+1]!=null && game.board[i+2]!=null) {
         if ((game.board[i] == game.board[i+1]) && (game.board[i+1] == game.board[i+2])) { win = game.board[i]; }
@@ -75,7 +80,7 @@ var game = {
       if (win !== null) { break; }
     }
     
-    // VERTICAL ROW CHECKS
+    // Vertical row checks
     if (win === null) {
       for (let i=0; i<3; i++) {
         if (game.board[i]!=null && game.board[i+3]!=null && game.board[i+6]!=null) {
@@ -85,7 +90,7 @@ var game = {
       }
     }
     
-    // DIAGONAL ROW CHECKS
+    // Diagonal row checks
     if (win === null) {
       if (game.board[0]!=null && game.board[4]!=null && game.board[8]!=null) {
         if ((game.board[0] == game.board[4]) && (game.board[4] == game.board[8])) { win = game.board[4]; }
@@ -97,32 +102,35 @@ var game = {
       }
     }
 
-    // WE HAVE A WINNER
+    // There is a winner
     if (win !== null) {
-      alert("WINNER - " + (win==0 ? "Player" : "Computer"));
-      game.reset();
+      display = document.getElementById('results');
+      display.textContent = "Winner - " + (win ==0 ? "Player" : "Computer");
+      /* alert("Winner - " + (win==0 ? "Player" : "Computer"));*/      
+       game.reset();
     }
   },
-
-  // (D) DUMB COMPUTER AI, RANDOMLY CHOOSES AN EMPTY SLOT
+  // (4) Dumb computer AI - Randomly choose an empty space
   dumbAI : function () {
-    // (D1) EXTRACT OUT ALL OPEN SLOTS
+    // (4a) Extract all open spaces
     var open = [];
     for (let i=0; i<9; i++) {
       if (game.board[i] === null) { open.push(i); }
     }
 
-    // (D2) RANDOMLY CHOOSE OPEN SLOT
+    // (4b) Rondomly choose an open space
     var random = Math.floor(Math.random() * (open.length-1));
     return open[random];
   },
 
-  // (E) AI WITH A LITTLE MORE INTELLIGENCE
+  // (5) AI with a little more intelligence
   notBadAI : function () {
-    // (E1) INIT
+    // (5a) Init
     var move = null;
     var check = function(first, direction, pc) {
-    // CHECK() : HELPER FUNCTION, CHECK POSSIBLE WINNING ROW
+
+    //Check(): Helper Function, check possible winning row
+
     //  first : first square number
     //  direction : "R"ow, "C"ol, "D"iagonal
     //  pc : 0 for player, 1 for computer
@@ -149,41 +157,43 @@ var game = {
       return null;
     };
 
-    // (E2) PRIORITY #1 - GO FOR THE WIN
-    // CHECK HORIZONTAL ROWS
+    // (5b) Priority #1 - Go for the win
+
+    // Check horizontal rows
     for (let i=0; i<9; i+=3) {
       move = check(i, "R", 1);
       if (move!==null) { break; }
     }
-    // CHECK VERTICAL COLUMNS
+    // Check vertical columns
     if (move===null) {
       for (let i=0; i<3; i++) {
         move = check(i, "C", 1);
         if (move!==null) { break; }
       }
     }
-    // CHECK DIAGONAL
+    // Check diagonal
     if (move===null) { move = check(0, "D", 1); }
     if (move===null) { move = check(2, "D", 1); }
 
-    // (E3) PRIORITY #2 - BLOCK PLAYER FROM WINNING
-    // CHECK HORIZONTAL ROWS
+    // (5c) Priority #2 - Block human from winning
+
+    // Check horizontal rows
     for (let i=0; i<9; i+=3) {
       move = check(i, "R", 0);
       if (move!==null) { break; }
     }
-    // CHECK VERTICAL COLUMNS
+    // Check vertical columns
     if (move===null) {
       for (let i=0; i<3; i++) {
         move = check(i, "C", 0);
         if (move!==null) { break; }
       }
     }
-    // CHECK DIAGONAL
+    // Check diagonal
     if (move===null) { move = check(0, "D", 0); }
     if (move===null) { move = check(2, "D", 0); }
 
-    // (E4) RANDOM MOVE IF NOTHING
+    // (5d) Random move if nothing
     if (move===null) { move = game.dumbAI(); }
     return move;
   }
