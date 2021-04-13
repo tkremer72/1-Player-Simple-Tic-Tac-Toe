@@ -4,14 +4,15 @@
 	padding: 0;
 	box-sizing: border-box;
   font-family: Poppins;
-}
-body {
   text-align: center;
-  font-family: Poppins;
   font-size: 28px;
   font-weight: 200;
   line-height: 32px;
   letter-spacing: 0.03em;
+}
+body {
+  margin-bottom: 100px;
+ 
 }
 .main-content {
    display: flex;
@@ -21,7 +22,7 @@ body {
    align-items: center;
 }
 h1 {
-  margin: 20px 0 20px 0;
+  margin: 25px 0 25px 0;
 }
 #tic_tac_toe_game {
   display: grid;
@@ -149,10 +150,18 @@ h1 {
 @media all and (max-width: 480px) {
   /* Center the main content, justify the text on small screens */
   .main-content {
-    display: block;
-     width: 100%;
-     height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
      background-color: #FFFFFF;
+  }
+  #tic_tac_toe_game {
+    display: grid;
+    max-width: 600px;
+    margin: 0 auto;
+    grid-template-columns: 31% 31% 31%;
+    grid-gap: 5px;
   }
   .game-title {
     margin-top: 10px;
@@ -169,8 +178,6 @@ h1 {
     font-family: Poppins;
     font-weight: 200;
     font-style: normal;
-/*     margin: 0 auto;
- */    
     font-size: 21px;
     margin-left: 55px;
   }
